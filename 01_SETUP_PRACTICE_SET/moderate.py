@@ -1,18 +1,21 @@
 """
 """
 
-# PROBLEM 1: Print a pattern
-# Write a program to print a simple pattern using multiple print statements
+# PROBLEM 1: Perform arithmetic
+# Write a program to calculate and print arithmetic results
 print("=== PROBLEM 1 ===")
-print("*")
-print("**")
-print("***")
+a = 10
+b = 20
+sum_result = a + b
+print(f"Addition result: {sum_result}")
 
-# PROBLEM 2: Print with different separators
-# Write a program to print numbers with different separators
+# PROBLEM 2: String concatenation
+# Write a program to demonstrate string concatenation
 print("=== PROBLEM 2 ===")
-print("1-2-3-4-5")
-print("1,2,3,4,5")
+first_name = "John"
+last_name = "Doe"
+full_name = first_name + " " + last_name
+print(f"Concatenated string: {full_name}")
 
 # PROBLEM 3: Print ASCII art
 # Write a program to print a simple ASCII art

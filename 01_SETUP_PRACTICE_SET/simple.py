@@ -9,7 +9,7 @@ print("Welcome to Python Programming")
 # PROBLEM 2: Print your name
 # Write a program to print your name on the console
 print("=== PROBLEM 2 ===")
-print("Your Name")
+print("Raju Kumar")
 
 # PROBLEM 3: Print multiple lines
 # Write a program that prints 3 different lines of text

@@ -7,6 +7,7 @@ import sys
 from pathlib import Path
 import io
 from contextlib import redirect_stdout, redirect_stderr
+from test_validators_strong import validate_problem
 
 # Color codes for terminal output
 class Colors:
@@ -184,14 +185,29 @@ def run_enhanced_tests():
                     status = f"{Colors.GREEN}PASSED{Colors.RESET}"
                     print(f"{practice_set}/{file_type}.py {status} {Colors.CYAN}[{percentage}%]{Colors.RESET}")
                     
-                    # Show individual problems
+                    # Show individual problems with VALIDATION
+                    validated_count = 0
                     for i in range(1, expected_problems + 1):
                         prob_key = f"PROBLEM {i}"
                         if prob_key in problems:
-                            prob_output = problems[prob_key][:50]
-                            print(f"  +- {Colors.GREEN}{prob_key}:{Colors.RESET} Output captured")
+                            prob_output = problems[prob_key]
+                            # Validate this problem
+                            is_valid, validation_msg = validate_problem(
+                                practice_set, file_type, i, prob_output
+                            )
+                            if is_valid:
+                                print(f"  +- {Colors.GREEN}{prob_key}:{Colors.RESET} Validated ({validation_msg})")
+                                validated_count += 1
+                            else:
+                                print(f"  +- {Colors.YELLOW}{prob_key}:{Colors.RESET} Output exists but weak ({validation_msg})")
                         else:
                             print(f"  +- {Colors.YELLOW}{prob_key}:{Colors.RESET} No output")
+                    
+                    # Update solved count based on validation
+                    solved_problems -= solved_count
+                    solved_problems += validated_count
+                    folder_problems_solved -= solved_count
+                    folder_problems_solved += validated_count
                 else:
                     folder_failed += 1
                     total_failed += 1
@@ -246,33 +262,37 @@ def run_enhanced_tests():
         if practice_set in results:
             r = results[practice_set]
             
-            # Count only COMPLETELY solved files (all problems in a file solved)
+            # Count ONLY completely solved files (ALL problems in file validated)
             completely_solved_files = 0
             
-            # Each file should have: simple=3 problems, moderate=3 problems, hard=2 problems
-            # We need to check if each file has all its problems solved
-            # For now, estimate based on problems_total and problems_solved
-            
-            # Calculate problems per file type
-            if r["problems_total"] == 8:  # simple(3) + moderate(3) + hard(2)
-                # We need to track per file, but we'll use a heuristic
-                # If all problems in a file are solved, that's 1 complete file
-                # This is approximate based on the folder's pattern
-                
-                # Better approach: check actual file counts
-                folder = base_path / practice_set
-                if folder.exists():
-                    for file_type in FILE_TYPES:
-                        filepath = folder / f"{file_type}.py"
-                        if filepath.exists():
-                            has_solution = check_solution_exists(filepath)
-                            if has_solution:
-                                success, output, error = run_practice_file(filepath)
-                                if success:
-                                    problems = parse_problem_outputs(output)
-                                    expected = 2 if file_type == "hard" else 3
-                                    if len(problems) == expected:
-                                        completely_solved_files += 1
+            folder = base_path / practice_set
+            if folder.exists():
+                for file_type in FILE_TYPES:
+                    filepath = folder / f"{file_type}.py"
+                    if filepath.exists():
+                        has_solution = check_solution_exists(filepath)
+                        if has_solution:
+                            success, output, error = run_practice_file(filepath)
+                            if success:
+                                problems = parse_problem_outputs(output)
+                                expected = 2 if file_type == "hard" else 3
+                                
+                                # Check if ALL problems in this file are validated
+                                validated_in_file = 0
+                                for i in range(1, expected + 1):
+                                    prob_key = f"PROBLEM {i}"
+                                    if prob_key in problems:
+                                        prob_output = problems[prob_key]
+                                        # VALIDATE each problem
+                                        is_valid, _ = validate_problem(
+                                            practice_set, file_type, i, prob_output
+                                        )
+                                        if is_valid:
+                                            validated_in_file += 1
+                                
+                                # File is COMPLETE only if ALL problems are validated
+                                if validated_in_file == expected:
+                                    completely_solved_files += 1
             
             # Determine color based on problems solved
             if r["problems_solved"] == 0:
