@@ -1,50 +1,61 @@
-# # Maximum of Two Numbers, Write a function that returns the larger of two numbers.
+# # # # Maximum of Two Numbers, Write a function that returns the larger of two numbers.
 
-# def larger_num(num1,num2):
-#     first_num  = (num1*10)+num2
-#     second_num = (num2*10)+num1
-#     return(max(first_num,second_num))
-
-
-# result = larger_num(3,7)  
-# print(result)
+# # # def larger_num(num1,num2):
+# # #     first_num  = (num1*10)+num2
+# # #     second_num = (num2*10)+num1
+# # #     return(max(first_num,second_num))
 
 
-# # Intermediate (Medium)
+# # # result = larger_num(3,7)  
+# # # print(result)
 
-# # Factorial Function
-# # Write a function to calculate the factorial of a number.
 
-# def factorial(num):
-#     if(num>0):
-#         return (num-1)*factorial(num)
+# # # # Intermediate (Medium)
 
-#     return result
+# # # # Factorial Function
+# # # # Write a function to calculate the factorial of a number.
 
-# print(factorial(5))
+# # # def factorial(num):
+# # #     if(num>0):
+# # #         return (num-1)*factorial(num)
 
-# # Palindrome Check
-# # Create a function that checks whether a string is a palindrome.
+# # #     return result
 
-# # Prime Number Check
-# # Write a function that returns True if a number is prime, otherwise False.
+# # # print(factorial(5))
 
-# # Count Vowels
-# # Create a function that counts the number of vowels in a string.
+# # # # Palindrome Check
+# # # # Create a function that checks whether a string is a palindrome.
 
-# # Sum of List Elements
-# # Write a function that takes a list and returns the sum of all elements.
+# # # # Prime Number Check
+# # # # Write a function that returns True if a number is prime, otherwise False.
 
-print(bool(None)) # output: False
-print(bool(0)) # output: False
-print(bool(-0)) # output: False
-print(bool(-3)) # output: True
-print(bool("0")) # output: True
-print(bool([])) # output: False
-print(bool({})) # output: False
-print(bool(())) # output: False
-print(bool("")) # output: False
-print(bool(set()))  # output: False
-print(bool(5)) # output: True
-print(bool("Hello")) # output: True
-print(bool([1, 2, 3])) # output: True
+# # # # Count Vowels
+# # # # Create a function that counts the number of vowels in a string.
+
+# # # # Sum of List Elements
+# # # # Write a function that takes a list and returns the sum of all elements.
+
+# # print(bool(None)) # output: False
+# # print(bool(0)) # output: False
+# # print(bool(-0)) # output: False
+# # print(bool(-3)) # output: True
+# # print(bool("0")) # output: True
+# # print(bool([])) # output: False
+# # print(bool({})) # output: False
+# # print(bool(())) # output: False
+# # print(bool("")) # output: False
+# # print(bool(set()))  # output: False
+# # print(bool(5)) # output: True
+# # print(bool("Hello")) # output: True
+# # print(bool([1, 2, 3])) # output: True
+
+# # x = 11
+# # y = 4
+# # x = x % y #output: 3
+# # print(x)
+# # x = 12
+
+# print('Let it' + 'snow')
+# print('And', 'snow')
+
+print(18 >> 1)

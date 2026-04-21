@@ -10,15 +10,15 @@ class employee:
         self.company = company
 
     # Instance Method
-    def get_salary(self):
+    def emp_details(self):
         return f"The salary of {self.name} is {self.salary} with role {self.role} in company {self.company}"
 
 # Creating an object of the employee class    
 emp1 = employee("Raju", 50000, "Developer", "Microsoft")
 print(emp1.name)
-print(emp1.company) # Accessing instance variable
+print(e  mp1.company) # Accessing instance variable
 print(employee.company)  # Accessing class variable
-print(emp1.get_salary())
+print(emp1.emp_details())
 
 
 #object introspection
