@@ -16,7 +16,7 @@ class employee:
 # Creating an object of the employee class    
 emp1 = employee("Raju", 50000, "Developer", "Microsoft")
 print(emp1.name)
-print(e  mp1.company) # Accessing instance variable
+print(emp1.company) # Accessing instance variable
 print(employee.company)  # Accessing class variable
 print(emp1.emp_details())
 
