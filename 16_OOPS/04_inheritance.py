@@ -13,7 +13,7 @@ class Dog(Animal): #child class(subclass)
     
 
 a = Animal("Animal")
-print(a.name)
+print(a.name) 
 print(a.speak())
 
 b = Dog("Tommy")
