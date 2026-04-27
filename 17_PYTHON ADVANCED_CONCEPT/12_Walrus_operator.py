@@ -1,7 +1,8 @@
 # Walrus Operator in Python
 # The walrus operator (:=) is a new operator in Python 3.8 that allows you to assign a value to a variable as part of an expression.
 
-myList = [1,2,3,4,5,6,7,8,9,10]
+myList = [1,2,3,4,5,6,7,8,9,10
+          ]
 # Example without walrus operator
 n = len(myList)
 if n > 5:
